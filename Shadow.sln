@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4EEB8A1C-9792-4E64-8562-E98FB9AC05BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shadow", "src\Shadow\Shadow.csproj", "{BB06A864-3297-4CDA-919D-28D1C22F554C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowCli", "src\ShadowCli\ShadowCli.csproj", "{F5FD2229-B413-43DD-8AD7-6516B5A2F304}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB06A864-3297-4CDA-919D-28D1C22F554C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB06A864-3297-4CDA-919D-28D1C22F554C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB06A864-3297-4CDA-919D-28D1C22F554C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB06A864-3297-4CDA-919D-28D1C22F554C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5FD2229-B413-43DD-8AD7-6516B5A2F304}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5FD2229-B413-43DD-8AD7-6516B5A2F304}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5FD2229-B413-43DD-8AD7-6516B5A2F304}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5FD2229-B413-43DD-8AD7-6516B5A2F304}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BB06A864-3297-4CDA-919D-28D1C22F554C} = {4EEB8A1C-9792-4E64-8562-E98FB9AC05BE}
+		{F5FD2229-B413-43DD-8AD7-6516B5A2F304} = {4EEB8A1C-9792-4E64-8562-E98FB9AC05BE}
+	EndGlobalSection
+EndGlobal

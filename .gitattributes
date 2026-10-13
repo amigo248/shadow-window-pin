@@ -1,0 +1,18 @@
+# 仓库内统一存 LF；检出时按平台习惯（配合 core.autocrlf）
+* text=auto
+
+# 以下类型一律按二进制处理，避免换行转换损坏文件
+*.png  binary
+*.ico  binary
+*.exe  binary
+*.dll  binary
+*.zip  binary
+
+# 脚本与源码按文本处理（diff 可读）
+*.cs   text
+*.csproj text
+*.sln  text
+*.ps1  text
+*.py   text
+*.md   text
+*.json text

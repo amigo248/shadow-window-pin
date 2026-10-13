@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>ShadowCli</AssemblyName>
+    <RootNamespace>ShadowCli</RootNamespace>
+    <!-- asInvoker：CLI 绝不能提权，否则脚本调用每次都会弹 UAC。 -->
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- 与 GUI 共用同一枚图标（同一个 ico 文件的两个消费者），避免两个 exe 看起来不是一套工具。 -->
+    <ApplicationIcon>..\Shadow\Resources\shadow.ico</ApplicationIcon>
+    <Version>1.0.0</Version>
+    <NeutralLanguage>zh-CN</NeutralLanguage>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <DebugType>embedded</DebugType>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      协议定义以「链接源文件」的方式共用：GUI 与 CLI 编的是同一份 IpcProtocol.cs，
+      将来改字段不会出现两边不一致却又能编译通过的隐性故障。
+      唯一约束是该文件只能用两个项目都能用的 API（这里是纯 System.Text.Json）。
+    -->
+    <Compile Include="..\Shadow\Ipc\IpcProtocol.cs" Link="Ipc\IpcProtocol.cs" />
+  </ItemGroup>
+
+</Project>

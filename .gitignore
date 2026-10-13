@@ -1,0 +1,16 @@
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.log
+publish/
+dist/
+_diag/
+_release/
+
+# 程序自己会写到 exe 旁边（便携模式）或 %APPDATA%：数据目录、运行标记、崩溃备份
+Shadow/config.json
+Shadow/config.corrupt.json
+Shadow/running.marker
+boot.log

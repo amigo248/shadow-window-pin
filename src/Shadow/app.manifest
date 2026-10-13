@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1">
+
+  <assemblyIdentity version="1.0.0.0" name="Shadow.app" />
+
+  <!-- 提权：Shadow 需要操作其他进程的窗口，必须与目标窗口处于同一完整性级别 -->
+  <trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">
+    <security>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <requestedExecutionLevel level="requireAdministrator" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+
+  <!-- 声明支持 Windows 10 / 11 -->
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+    <application>
+      <!-- Windows 10 / Windows 11 -->
+      <supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />
+    </application>
+  </compatibility>
+
+  <!--
+    打包提醒（M6 实测结论）：单文件/自包含发布时，System.Windows.Forms.dll 被塞进 bundle，
+    Assembly.Location 变成空串 → WinForms 只能把 comctl32 v6 的激活上下文清单写到
+    Path.GetTempPath()（EnableVisualStyles → ThemingScope.CreateActivationContext）。
+    也就是说：单文件版需要 %TEMP% 可写；若目标机器禁止写临时目录，
+    请改用「框架依赖 + 不做单文件」的布局（WinForms 从共享框架目录加载，清单写在框架目录里）。
+    实测：在 %TEMP% 被禁写的环境下，单文件版会在 EnableVisualStyles 处抛 UnauthorizedAccessException。
+    注意：在清单里声明 Common-Controls 依赖并不能绕开这件事（已试过），所以这里不重复声明。
+  -->
+
+  <application xmlns="urn:schemas-microsoft-com:asm.v3">
+    <windowsSettings>
+      <!--
+        DPI 感知刻意不写在这里：WinForms 要求用 Application.SetHighDpiMode(PerMonitorV2)
+        在代码里声明（见 Program.ConfigureWinForms），否则编译会报 WFAC010。
+        多显示器 DPI 对叠加层的矩形对齐是硬要求，改动前请先读那条警告。
+      -->
+      <longPathAware xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">true</longPathAware>
+      <!-- 关闭老旧系统的 DPI 虚拟化干扰 -->
+      <activeCodePage xmlns="http://schemas.microsoft.com/SMI/2019/WindowsSettings">UTF-8</activeCodePage>
+    </windowsSettings>
+  </application>
+
+</assembly>
